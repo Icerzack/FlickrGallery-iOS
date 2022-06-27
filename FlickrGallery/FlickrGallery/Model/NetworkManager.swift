@@ -1,21 +1,13 @@
-//
-//  Network.swift
-//  FlickrGallery
-//
-//  Created by Max Kuznetsov on 26.06.2022.
-//
-
 import Foundation
 import Alamofire
 import SwiftyJSON
 
 protocol NetworkManagerProtocol: AnyObject {
-    
     func fetchFlickrPhotos(completionHandler: (([[String:String]]?) -> Void)?)
     
 }
 
-class NetworkManager: NetworkManagerProtocol{
+class AFNetworkManager: NetworkManagerProtocol{
     
     func fetchFlickrPhotos(completionHandler: (([[String:String]]?) -> Void)?) {
         let urlString = "https://www.flickr.com/services/rest/"
@@ -55,7 +47,6 @@ class NetworkManager: NetworkManagerProtocol{
                     dict["imageData"] = urlZ
                     outputPhotos.append(dict)
                 }
-                print(outputPhotos)
                 completionHandler?(outputPhotos)
             }
         }
